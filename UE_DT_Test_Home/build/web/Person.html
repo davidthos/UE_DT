@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Person</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/main.css" rel="stylesheet" type="text/css" />     
+        <script src="js/Person.js"></script>
+    </head>
+    
+    
+    <body onload="initPage()">
+        <div class="wrapper_css">
+            
+            
+            <!-- Zone de "tites" -->
+            <div id="top_css">
+                <label>Person</label>
+            </div>
+            
+            
+            
+            <!-- Zone du Menu  -->
+            <div id="menu_css">
+                <a href="Person.html">Person</a>&nbsp;
+                <a href="Section.html">Section</a>&nbsp;
+                <a href="Ue.html">Ue</a>&nbsp;
+                <a href="organized_ue.html">Organized-Ue</a>&nbsp;
+            </div>
+            
+            
+            
+            <!-- La zone « Critères de Recherches » -->
+            <!-- Création d'un formulaire de recherche d'une personne ds la DB-->
+            <div id="search_css">
+                <form id="personSearch_JS">
+                    <label>Rechercher une personne par :</label><br/><br/>
+                    
+                    <label>Nom : &nbsp</label>          <!-- J'affiche ne nom à l'écan -->
+                    <input id="lastName_search_JS" type="text"/>    <!-- Je crée un champ texte utilisable par l'utilisateur. Une fois le texte encodé, je transmet cette info au JS qui va le traiter (plus exactement, c'est le JS qui demandande, via la methode get, de récupérer l'élement)-->
+                    
+                    <label>Prenom : &nbsp</label>
+                    <input id="firstName_search_JS" type="text"/>
+                    
+                    <br/><br/>
+                    <!-- SIMPLE TEST : <span onclick="alert('Hello !');">Cliquez-moi !</span> -->
+                    <button type="button" onclick="pers.getList()">Rechercher</button>
+                </form>
+            </div>
+            
+            
+            
+            
+            <!-- La zone « Liste Résultats» -->
+            <!-- Va nous permettre de lister toutes les personnes ainsi que leurs critères-->
+            <div id="list_css">
+                <div id="personList_JS">salut</div>
+            </div>
+            
+            
+            
+            <!-- La zone « Détail Élément Sélectionné » -->
+            <!-- Va nous permettre d'utiliser un CRUD dans la DB => Sauver(modif), Nouveau, suppression d'une personne -->
+            <div id="detail_css">
+                <div id="personDetail_JS">
+                    <form>
+                        <input type="hidden" id="personId_detail_JS">
+                        
+                        <label>Nom : &nbsp;</label>
+                        <input id="lastName_detail_JS" type="text"><br/>
+                        
+                        <label>Prenom : &nbsp;</label>
+                        <input id="firstName_detail_JS" type="text"><br/>
+                        
+                        <button type="button" onclick="pers.doSave()">Sauver</button>&nbsp;
+                        <button type="button" onclick="pers.doNew()">Nouveau</button>&nbsp;
+                        <button type="button" onclick="pers.doDelete()">Supprimer</button>
+                        
+                    </form>
+                </div>
+                
+            </div>
+            
+        </div><!-- end Wrapper-->
+    </body>
+</html>
