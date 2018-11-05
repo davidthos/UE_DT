@@ -13,25 +13,19 @@ import java.util.Date;
  */
 public class PersonSearchVM {
 
-    String firsName;
-    String lastName;
-    String mobile;
-    String email;
-    String address;
-    String postalCode;
-    String city;
-    String contry;
-    boolean isTeacher;
-    Date dateOfBirth;
-    boolean isJuryMember;
+    String      firsName;
+    String      lastName;
+    String      mobile;
+    String      email;
+    String      address;
+    String      postalCode;
+    String      city;
+    String      country;
+    boolean     isTeacher;
+    Date        dateOfBirth;
+    boolean     isJuryMember;
 
     public PersonSearchVM() {
-    }
-
-    public PersonSearchVM(String lastName, String firstName) {
-       
-        this.lastName = lastName;
-        this.firsName = firstName;
     }
 
 
@@ -63,8 +57,8 @@ public class PersonSearchVM {
         return city;
     }
 
-    public String getContry() {
-        return contry;
+    public String getCountry() {
+        return country;
     }
 
     public boolean isIsTeacher() {
@@ -108,8 +102,8 @@ public class PersonSearchVM {
         this.city = city;
     }
 
-    public void setContry(String contry) {
-        this.contry = contry;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public void setIsTeacher(boolean isTeacher) {

@@ -69,6 +69,44 @@ search_css label{
     border: solid 1px #3366FF;
     overflow-y: auto;
 }
+
+.colPersonLastNameTitle {
+    width: 150px;
+    text-decoration: underline;
+}
+.colPersonFirstNameTitle {
+    width: 150px;
+    text-decoration: underline;
+}
+.colPersonEmailTitle{
+    width : 150px;
+    text-decoration: underline;
+}
+.colPersonIdTitle{
+    width: 60px;
+    text-decoration: underline;
+}
+
+.colPersonLastName {
+    width: 150px;
+}
+.colPersonFirstName {
+    width: 150px;
+}
+.colPersonEmail{
+    width : 150px;
+}
+
+.colPersonId {
+    color:blue;
+    width: 60px;
+    text-decoration: underline;
+}
+.colPersonId:hover {
+    cursor: pointer;
+}
+
+
 #detail_css {
     float: right;
     width: 470px;
@@ -81,17 +119,3 @@ search_css label{
     text-align: left;
 }
 
-.colPersonName {
-    width: 150px;
-}
-.colPersonDesc {
-    width: 180px;
-}
-.colPersonId {
-    color:blue;
-    width: 40px;
-    text-decoration: underline;
-}
-.colPersonId:hover {
-    cursor: pointer;
-}

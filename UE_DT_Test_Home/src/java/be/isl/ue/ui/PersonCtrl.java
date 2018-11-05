@@ -11,6 +11,7 @@ import be.isl.ue.viewmodel.PersonSearchVM;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,7 @@ public class PersonCtrl extends HttpServlet {
         PersonDAO dao;
         HttpSession session = request.getSession();
         
+        //Pourquoi personDAO, le p en minuscule ?
         if (session.getAttribute("personDAO") == null) {
             dao = new PersonDAO();
             session.setAttribute("personDAO", dao);
@@ -51,16 +53,42 @@ public class PersonCtrl extends HttpServlet {
         }
         
         String Action = request.getParameter("Action");
+        
+        //Affichage des données de la personnes selectionnée via le clieck de l'id de la personne en question
         if (Action.equals("getOne")) {
+            
                 String id = request.getParameter("PersonId");
                 writeResponse(response, new Gson().toJson(dao.getById(Integer.parseInt(id))));
+            
+                // Cette action me donne la liste de la personne que je recherche
             } else if (Action.equals("getList")) {
+                
                 PersonSearchVM s = new PersonSearchVM();
-                s.setLastName(request.getParameter("lastname"));
-                s.setFirstName(request.getParameter("firstname"));
+                
+                s.setLastName(request.getParameter("lastName"));    
+                s.setFirstName(request.getParameter("firstName"));
+                
                 String json = new Gson().toJson(dao.load(s));
                 writeResponse(response, json);
-            } else if (Action.equals("doSave")) {
+                
+                /*PersonSearchVM s = new PersonSearchVM();
+                
+                s.setLastName(request.getParameter("lastName"));    
+                s.setFirstName(request.getParameter("firstName")); 
+                ArrayList<Person> persons = dao.load(s);
+                String json = new Gson().toJson(persons);
+                writeResponse(response, json);*/
+                
+                //Ce procédé fonctionne tandis que celui du dessus, KO !
+                /*Person s = new Person();
+                s.setLastName(request.getParameter("lastName"));
+                ArrayList<Person> persons = dao.load(s);
+                String json = new Gson().toJson(persons);
+                writeResponse(response, json);*/
+                
+                
+            } /*else if (Action.equals("doSave")) {
+                
                 String id = request.getParameter("id");
                 String categoryId = request.getParameter("categoryId");
                 Person a = null;
@@ -72,15 +100,15 @@ public class PersonCtrl extends HttpServlet {
                 }
                 PersonDAO cDAO = new PersonDAO();
                 
-                a.setLastName(request.getParameter("name"));
-                a.setFirstName(request.getParameter("description"));
+                a.setLastName(request.getParameter("lastName_search_JS"));
+                a.setFirstName(request.getParameter("firstName_search_JS"));
    
                 dao.save(a);
                 writeResponse(response, new Gson().toJson(dao.getList()));
             } else if (Action.equals("doDelete")) {
                 dao.delete(Integer.parseInt(request.getParameter("id")));
                 writeResponse(response, new Gson().toJson(dao.getList()));
-            }
+            }*/
         
         
     }

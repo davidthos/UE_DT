@@ -1,0 +1,233 @@
+                                /*********************/
+                                /*** CLIENT - SIDE ***/
+                                /*********************/
+
+HTML / CSS :
+-----------
+
+Servent uniquement à l'affichage, et n'interviennent en aucun cas ds le processus de communication.
+
+Le Javascript :
+------------- 
+       permet de dynamiser une page HTML en ajoutant des intéractions avec l'utilisateur.
+       Est un language client-side => les scripts sont exécutés par le navigateur chez 
+       l'internaute.
+
+       On créer notre page HTML && CSS, une fois que celle-ci est faite et fonctionnelle,
+       On peut passer au JavaScript, qui lui va pouvoir faire des intéractions avec 
+       la page HTML et / ou CSS => grace aux balises et aux id=nomInteraction, on va pouvoir 
+       y injecter du code venant de JS sans avoir à toucher au code HTML qui lui est statique.
+       On agira donc de manière ciblé ds un bout de code HTML ou il y a lieux de faire des intéractions.
+       (ex : autocomplétion, recherche de donnée, sauvegarde auto des textes,...)
+  
+ DOM :
+ --- 
+        La DOM va nous permettre, via le JS, d'accéder au code HTML.
+        Grace au DOM, on va pouvoir modifier / déplacer / supprimer des éléments HTML 
+        (aficher ou masquer un div par ex.)
+        En JS, en parlera d'éléments HTML plutot que de de pair de Balise 
+        (ouvrante / Fermante) terme utilié en HTML car elles sont vue comme des objets.
+
+AJAX :
+----
+        l'Ajax est un ensemble de technologie destinées à réaliser de rapides mises à jour 
+        du contenu d'une page Web,sans 	qu'elles nécessitent le moindre rechargement 
+        visible par l'utilisateur de la page Web.  
+
+        Le transfert de données est géré exclusivement par le JavaScript, et utilise 
+        certaines technologies de FORMATAGE de données, comme le XML ou le JSON, 
+        mais cela s'arrête là. 
+
+        Quand on a un objet, avec une multitude de données, on recois ces données sous forme
+        de chaine de caractère.
+        Il faut alors utiliser l'objet nommé JSON qui possède 2 méthodes :
+            * parse(),
+                prend en paramètre la chaine de caractère à analyser et retourne le résultat
+                sous forme d'objet JSON.
+            * Stringify()
+                permet de faire l'inverse :
+                elle prend en paramètre un objet JSON et retourne son équivalent sous forme de chaîne de caractères.
+
+        Les données reçues au format JSON ont l'avantage d'être très concises, mais ne sont 
+        pas toujours très lisibles pour un humain. 
+        Un autre avantage est que les données sont accessibles en tant qu'objets littéraux.
+
+    L'objet XMLHttpRequest :
+    ----------------------
+    Permet d'envoyer des requetes HTTP vers le serveur, de recevoir les réponses 
+    et de mettre à jours une partie de la page Web.
+
+    ! A l'aide du XHTML et des feuilles de style CSS, le résultat est afiché ds le 
+    navigateur de facons lisible !
+    C'est la base de AJAX.
+    Principe : 
+        une requête HTTP est envoyée à l'adresse spécifiée,
+        une réponse est alors attendue en retour de la part du serveur ; 
+        une fois la réponse obtenue, la requête s'arrête et peut éventuellement être relancée.
+
+    Base :
+        1) L'utilisation de l'objet xhr (pr nous : req) se fait en 2 étapes : 
+                1) Préparation et envois de la requête.
+                2) Réception des données
+
+        2) Préparation et envoi de la requête.
+            2.1) Instancier un objet xhr
+                    var xhr = new XMLHttpRequest();
+            2.2) La préparation de la requête se fait par le biais de la méthode open(), 
+                qui prend en paramètres cinq arguments différents, dont trois facultatifs :
+                    
+                    * Le premier argument contient la méthode d'envoi des données, 
+                    les trois méthodes principales sont GET, POST et HEAD.
+
+                    * Le deuxième argument est l'URL à laquelle vous souhaitez soumettre votre requête, par exemple : 'http://mon_site_web.com'.
+
+                    * Le troisième argument est un booléen facultatif dont la valeur par défaut est true. À true, la requête sera de type asynchrone, à false elle sera synchrone (la différence est expliquée plus tard).
+
+                    * Les deux derniers arguments sont à spécifier en cas d'identification nécessaire sur le site Web (à cause d'un .htaccess par exemple). Le premier contient le nom de l'utilisateur, tandis que le deuxième contient le mot de passe.
+
+            2.3) Envoie de la requête
+                Après préparation de la requête, il ne reste plus qu'à l'envoyer avec la 
+                méthode send(). Cette dernière prend en paramètre un argument obligatoire
+
+                Pour nous, la méthode send() sera utilisée ds toutes nos méthodes.
+
+            2.4) setRequestHeader() 
+                permet l'ajout ou la modification d'un en-tête, elle prend en paramètres 
+                deux arguments : 
+                        *le premier est l'en-tête concerné 
+                        * le deuxième est la valeur à lui attribuer.
+
+        3) Réception des données :
+            Requête asynchrone : spécifier la fonction de callback
+                Dans le cas d'une requête asynchrone, il nous faut spécifier une fonction
+                de callback afin de savoir quand la requête s'est terminée.
+                 
+                Pour cela, l'objet XHR possède un événement nommé onreadystatechange (gestionnaire d'évènement qui prend en charge les changements d'états de la requête qd on interroge le serveur).
+                Cependant, cet événement ne se déclenche pas seulement lorsque la requête
+                est terminée, mais plutôt, comme son nom l'indique, à chaque changement 
+                d'état. 
+                Il existe cinq états différents représentés par des constantes spécifiques 
+                à l'objet XMLHttpRequest
+                 
+                L'utilisation de la propriété readyState est nécessaire pour connaître 
+                l'état de la requête. 
+                    * readyState === 4 OU DONE
+                        veut dire que l'état de la reqête est terminée (Le code ne s'éxecutera que qd la requete est finie)
+                    * status === 200
+                         veut dire que tout c'est bien passé (différent du code 404 sur les page html mal chargée)
+
+        4) Traitement des données                 
+            Une fois la requête terminée, il vous faut récupérer les données obtenues
+                * Les données sont au format XML
+                * JSON
+                    il vous faut alors utiliser la propriété responseText
+                    qui vous fournit toutes les données sous forme d'une chaîne de caractères.
+                    var response = JSON.parse(xhr.responseText);
+
+                    (un parseur (ou analyseur syntaxique) va se mettre en route pour 
+                    analyser le code reçu, le décomposer, et enfin le reconstituer sous 
+                    forme d'arbre DOM qu'il sera possible de parcourir.)
+
+JSON : 
+------
+    Collection de paires de nom / valeurs (comme les structures en C )..
+
+    L'objet JSON 
+    * Contient des méthodes pour analyser (parser) des représentations
+    JSON ou convertir des valeurs en JSON.
+
+    * JSON.parse(text)
+    retourne un objet correspondant au texte JSON
+
+    * JSON.stringify()
+    Convertit une valeur en chaîne JSON.
+
+    /!\/!\/!\ POUR le côté SERVEUR EN JAVA /!\/!\/!\ : 
+    --------------------------------------------------
+    On va utiliser 3 choses :
+        * Dédinir l'Entité => Entity
+            Utilisation de constructeur avec param
+        * Allimenter un collection : DAO 
+            List<State> states = new ArrayList<>();
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+            State s = new State(rs.getInt("State_province_id"), rs.getString("name"));
+            states.add(s);
+            }
+            rs.close();
+        * Convertir la collection en JSON   (dans les Servlets => UI)
+            String jsonStates = new Gson().toJson(states);
+            return jsonStates;
+
+    Côté client : 
+    -------------
+        Dans le JS
+        var states = new Object();
+        states = JSON.parse(req.responseText);
+        for (i = 0; i < states.length; i++){
+            ... // On prends les noms des variables utilisé ds les entity)
+        }
+        temp = temp + "</select>";
+        var lst = document.getElementById("State"); //State vient de la DAO qui demande les infos du serv
+        lst.innerHTML = temp;
+
+
+JDBC : (DAO)
+------
+    * Permet à un programme JAVA de communiquer avec une base de
+        données
+    * Permet d'envoyer des requêtes SQL.
+    * Permet de renvoyer des jeux de résultats vers le programme JAVA.
+    * Est transparent par rapport au gestionnaire de bases de données.
+
+
+
+
+Servlets :
+----------
+
+
+
+
+
+
+Callbacks :
+-----------
+
+Promise :
+---------
+
+    programmation asynchrone
+    ECMAScript 5 (et les versions antérieures) ne jurent que par les callbacks 
+
+
+
+
+
+                            /*********************/
+                            /*** SERVER - SIDE ***/
+                            /*********************/
+
+MVC :
+---
+
+Le Java EE (Java Enterprise Edition) a été créé pour le développement d'applications d'entreprises. 
+Ses spécifications ont été pensées afin, notamment, de faciliter le travail en équipe sur un 
+même projet : l'application est découpée en couches, et le serveur sur lequel tourne l'application 
+est lui-même découpé en plusieurs niveaux. 
+Pour faire simple, Java EE fournit un ensemble d’extensions au Java standard afin de faciliter 
+la création d’applications centralisées. 
+
+
+
+1) Dans le package dao, créer un ConnectDB pour se connecter au serveur.
+    Avant, il faut au préalable installer le Driver postgreSQL
+
+2) Dans le package entity Créer la class Person avec les attributs, constructeurs et méthodes.
+    afin de pouvoir créer l'objet person
+    On va créer une interface Entity car toutes les class auront 1 point en commun, 
+    ils auront tous besoin d'avoir accèss à une ID (Clé primaire ???)
+
+3) dans le package ui
+    Créer notre servelet qui va aiguiller notre code entre la vue et le model(DB)
+

@@ -19,9 +19,9 @@ import java.util.logging.Logger;
  * @param <T>
  */
 public abstract class DAO<T extends Entity >  {
-    private ArrayList<T> entityList = new ArrayList();
-    private ConnectDB cDB;
-    private String deleteCommand;
+    protected ArrayList<T> entityList = new ArrayList();
+    protected ConnectDB cDB;
+    protected String deleteCommand;
     
     public DAO() {
         cDB = new ConnectDB();

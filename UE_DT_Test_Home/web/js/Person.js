@@ -5,22 +5,22 @@ class Person{
     //Constructeur par défaut
     constructor(){
     }   
-    
-   
-    
-    
-    //Va nous permettre d'afficher la liste des personne dans la zone liste
-    // Avec les Actions, j'appelle les controleurs
+
+    // Cette fonction nous est utile pr faire la recherche d'une personne via un certain critère.
+    // seul la personne selectionnées sera affichée dans la zone Liste (avec ces détails)
+    // Avec les Actions, j'appelle les controleurs (UI)
     getList(){
-         
-        let lastName    = document.getElementById("lastName_search_JS").value; //on récupère l'élément de la page HTML sLName. .value veut dire que l'on retourne la valeut au HTML
+        console.log('getList');
+        console.log('Display value from client after research click button :  ');
+        let lastName    = document.getElementById("lastName_search_JS").value;                  //on récupère l'élément de la page HTML sLName. .value veut dire que l'on retourne la valeut au HTML
         let firstName   = document.getElementById("firstName_search_JS").value;
-        let params      = "Action=getList&lastName=" + lastName + "&firstName=" + firstName; 
+        let params      = "Action=getList&lastName=" + lastName + "&firstName=" + firstName;    // Jenvois les données encodé aux param de la classe Person 
         
         let promise     = doAjaxCall('POST', 'PersonCtrl', params);
         let thisPers    = this;
         
-        promise.then(function (data) {
+        promise.then(function (data) {                      // Des que les actions ont étés effectuées, afiche moi juste la personne concernée
+            console.log('GOT DATA ! Promise fulfilled. ');
             thisPers.displayList(data);
         }, function (error) {
             console.log(error.message);
@@ -28,38 +28,26 @@ class Person{
         });
     }
     
-    // Par rapport à l'ID de la personne, on va afficher les détails de celui-ci ds la zone de détail (pour faire les modif d'une personne...)
-    getOne(PersonId){
-        let params = "Action=getOne&PersonId=" + PersonId;
-        let promise = doAjaxCall('POST', 'PersonCtrl', params);
-        
-
-        promise.then(function (data) {
-            let person = JSON.parse(data);
-            if (person !== null) {
-                document.getElementById("personId_detail_JS").value = person.personId_detail_JS;
-                document.getElementById("lastName_detail_JS").value = person.lastName_detail_JS;
-                document.getElementById("firstName_detail_JS").value = person.firstName_detail_JS;
-               
-            }
-        }, function (error) {
-            console.log('Promise rejected.');
-            console.log(error.message);
-        });
-    }
     
-    // On transforme les données recu en langage HTML !!! VOIR ma boucle !!!
+    //Fonction d'affichage pr la ZONE List //On transforme les données recu du serveur en langage HTML !!! 
     displayList(data) {
         console.log("Prepare data to be display");
-        let person = new Object();
+        
+        let persons = new Object();
+        
         let htmlTable = "<table>";
-
-        articles = JSON.parse(data);
-        for (let i = 0; i < person.length; i++) {
+            htmlTable += "<td class='colPersonLastNameTitle'>"   + "Noms "       + "</td>";
+            htmlTable += "<td class='colPersonFirstNameTitle'>"  + "prénoms "    + "</td>";
+            htmlTable += "<td class='colPersonEmailTitle'>"      + "E-mails "    + "</td>";
+            htmlTable += "<td class='colPersonIdTitle'>"         + "ID "         + "</td>";
+            
+        persons = JSON.parse(data);
+        for (let i = 0; i < persons.length; i++) {
             htmlTable += "<tr>";
-            htmlTable += "<td class='colPersonName'>" + person[i].lastName_detail_JS + "</td>";
-            htmlTable += "<td class='colPersonDesc'>" + person[i].person.firstName_detail_JS + "</td>";
-            htmlTable += '<td class="colPersonId">' + '<a onclick="pers.getOne(' + person[i].personId_detail_JS + ')" >' + person[i].personId_detail_JS + '</a></td>';
+            htmlTable += "<td class='colPersonLastName'>"   + persons[i].lastName  + "</td>";
+            htmlTable += "<td class='colPersonFirstName'>"  + persons[i].firstName + "</td>";
+            htmlTable += "<td class='colPersonEmail'>"      + persons[i].email     + "</td>";
+            htmlTable += '<td class="colPersonId">' + '<a onclick="pers.getOne(' + persons[i].personId + ')" >' + persons[i].personId + '</a></td>';
             htmlTable += "</tr>";
         }
         htmlTable += "</table>";
@@ -68,6 +56,35 @@ class Person{
     }
     
     
+    // Par rapport à l'ID de la personne, on va afficher les détails de celui-ci ds la ZONE de détail (pour faire les modif d'une personne...)
+    getOne(PersonId){
+        console.log('getOne');
+        
+        let params = "Action=getOne&PersonId=" + PersonId;
+        console.log(params);
+        console.log(PersonId);
+        let promise = doAjaxCall('POST', 'PersonCtrl', params);
+        
+
+        promise.then(function (data) {
+            let person = JSON.parse(data);
+            if (person !== null) {          //On prends les param des Entity
+                document.getElementById("personId_detail_JS").value     = person.personId;
+                document.getElementById("lastName_detail_JS").value     = person.lastName;
+                document.getElementById("firstName_detail_JS").value    = person.firstName;
+                document.getElementById("mobile_detail_JS").value       = person.mobile;
+                document.getElementById("address_detail_JS").value      = person.address;
+                document.getElementById("postalCode_detail_JS").value   = person.postalCode;
+                document.getElementById("city_detail_JS").value         = person.city;
+                document.getElementById("country_detail_JS").value      = person.country;
+                document.getElementById("dateOfBirth_detail_JS").value  = person.dateOfBirth;
+               
+            }
+        }, function (error) {
+            console.log('Promise rejected.');
+            console.log(error.message);
+        });
+    }
 }
 
 function initPage() {
@@ -75,7 +92,7 @@ function initPage() {
     pers.getList();
 }
 
-function doAjaxCall(method, url,params) {
+function doAjaxCall(method, url, params) {
     var promise = new Promise(function (resolve, reject) {
         var request = new XMLHttpRequest();
 

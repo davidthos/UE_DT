@@ -17,16 +17,16 @@ import java.util.Objects;
 public class Person implements Entity, Comparable<Person>{
 
     private Integer personId;
-    private String firstName;
-    private String lastName;
-    private String mobile;
-    private String email;
-    private String address;
-    private String postalCode;
-    private String city;
-    private String contry;
+    private String  firstName;
+    private String  lastName;
+    private String  mobile;
+    private String  email;
+    private String  address;
+    private String  postalCode;
+    private String  city;
+    private String  country;
     private boolean isTeacher;
-    private Date dateOfBirth;
+    private Date    dateOfBirth;
     private boolean isJuryMember;
 
     public Person() {
@@ -37,6 +37,24 @@ public class Person implements Entity, Comparable<Person>{
         this.lastName = lastName;
         this.firstName = firstName;
     }
+
+
+    public Person(int id, String lastName, String firstName, String email, String mobile, String address, String postalCode, String city, String country, Date dateOfBirth) {
+        this.personId       = id;
+        this.lastName       = lastName;
+        this.firstName      = firstName;
+        this.email          = email;
+        this.mobile         = mobile;
+        
+        this.address        = address;
+        this.postalCode     = postalCode;
+        this.city           = city;
+        this.country        = country;
+        this.dateOfBirth    = dateOfBirth;
+    }
+
+  
+
 
     public Integer getPersonId() {
         return personId;
@@ -70,8 +88,8 @@ public class Person implements Entity, Comparable<Person>{
         return city;
     }
 
-    public String getContry() {
-        return contry;
+    public String getCountry() {
+        return country;
     }
 
     public boolean isIsTeacher() {
@@ -118,8 +136,8 @@ public class Person implements Entity, Comparable<Person>{
         this.city = city;
     }
 
-    public void setContry(String contry) {
-        this.contry = contry;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public void setIsTeacher(boolean isTeacher) {
@@ -147,7 +165,7 @@ public class Person implements Entity, Comparable<Person>{
 
     @Override
     public String toString() {
-        return "Person{" + "personId=" + personId + ", firsName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile + ", email=" + email + ", address=" + address + ", postalCode=" + postalCode + ", city=" + city + ", contry=" + contry + ", isTeacher=" + isTeacher + ", dateOfBirth=" + dateOfBirth + ", isJuryMember=" + isJuryMember + '}';
+        return "Person{" + "personId=" + personId + ", firsName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile + ", email=" + email + ", address=" + address + ", postalCode=" + postalCode + ", city=" + city + ", contry=" + country + ", isTeacher=" + isTeacher + ", dateOfBirth=" + dateOfBirth + ", isJuryMember=" + isJuryMember + '}';
     }
     
 
@@ -196,7 +214,7 @@ public class Person implements Entity, Comparable<Person>{
         if (!Objects.equals(this.city, other.city)) {
             return false;
         }
-        if (!Objects.equals(this.contry, other.contry)) {
+        if (!Objects.equals(this.country, other.country)) {
             return false;
         }
         if (!Objects.equals(this.personId, other.personId)) {
