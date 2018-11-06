@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,13 +61,20 @@ public class PersonCtrl extends HttpServlet {
                 String id = request.getParameter("PersonId");
                 writeResponse(response, new Gson().toJson(dao.getById(Integer.parseInt(id))));
             
-                // Cette action me donne la liste de la personne que je recherche
+                // Cette action me donne les détails, dans liste, de la personne que je recherche
             } else if (Action.equals("getList")) {
                 
                 PersonSearchVM s = new PersonSearchVM();
                 
-                s.setLastName(request.getParameter("lastName"));    
-                s.setFirstName(request.getParameter("firstName"));
+                s.setPersonSearchVMLastName(request.getParameter("personLastName"));    
+                s.setPersonSearchVMFirstName(request.getParameter("personFirstName"));
+                s.setPersonSearchVMMobile(request.getParameter("personMobile"));
+                s.setPersonSearchVMEmail(request.getParameter("personEmail"));
+                
+                //s.setDateOfBirth(request.getParameter("dateOfBirth"));
+                
+                s.setPersonSearchVMCity(request.getParameter("personCity"));
+                s.setPersonSearchVMCountry(request.getParameter("personCountry"));
                 
                 String json = new Gson().toJson(dao.load(s));
                 writeResponse(response, json);
@@ -87,28 +95,36 @@ public class PersonCtrl extends HttpServlet {
                 writeResponse(response, json);*/
                 
                 
-            } /*else if (Action.equals("doSave")) {
+            } else if (Action.equals("doSave")) {
                 
-                String id = request.getParameter("id");
-                String categoryId = request.getParameter("categoryId");
+                String id = request.getParameter("personId"); 
                 Person a = null;
+                
                 if (id != null && id.length() > 0) {
                     a = dao.getById(Integer.parseInt(id));
                 } 
                 if (a == null) {
                     a = new Person();
                 }
-                PersonDAO cDAO = new PersonDAO();
                 
-                a.setLastName(request.getParameter("lastName_search_JS"));
-                a.setFirstName(request.getParameter("firstName_search_JS"));
+                a.setPersonLastName(request.getParameter("personLastName"));
+                a.setPersonFirstName(request.getParameter("personFirstName"));
+                a.setPersonMobile(request.getParameter("personMobile"));
+                a.setPersonEmail(request.getParameter("personEmail"));
+                a.setPersonAddress(request.getParameter("personAddress"));
+                a.setPersonPostalCode(request.getParameter("personPostalCode"));
+                a.setPersonCity(request.getParameter("personCity"));
+                a.setPersonCountry(request.getParameter("personContry"));
+                //a.setPersonDdateOfBirth(request.getParameter("personDateOfBirth"));
    
                 dao.save(a);
                 writeResponse(response, new Gson().toJson(dao.getList()));
+                
+                
             } else if (Action.equals("doDelete")) {
-                dao.delete(Integer.parseInt(request.getParameter("id")));
+                dao.delete(Integer.parseInt(request.getParameter("personId")));
                 writeResponse(response, new Gson().toJson(dao.getList()));
-            }*/
+            }
         
         
     }

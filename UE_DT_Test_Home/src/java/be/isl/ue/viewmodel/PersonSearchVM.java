@@ -13,108 +13,108 @@ import java.util.Date;
  */
 public class PersonSearchVM {
 
-    String      firsName;
-    String      lastName;
-    String      mobile;
-    String      email;
-    String      address;
-    String      postalCode;
-    String      city;
-    String      country;
-    boolean     isTeacher;
-    Date        dateOfBirth;
-    boolean     isJuryMember;
+    String      personSearchVMFirsName;
+    String      personSearchVMLastName;
+    String      personSearchVMMobile;
+    String      personSearchVMEmail;
+    String      personSearchVMAddress;
+    String      personSearchVMPostalCode;
+    String      personSearchVMCity;
+    String      personSearchVMCountry;
+    boolean     personSearchVMIsTeacher;
+    Date        personSearchVMDateOfBirth;
+    boolean     personSearchVMIsJuryMember;
 
     public PersonSearchVM() {
     }
 
 
-    public String getFirstName() {
-        return firsName;
+    public String getPersonSearchVMFirstName() {
+        return personSearchVMFirsName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPersonSearchVMLastName() {
+        return personSearchVMLastName;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPersonSearchVMMobile() {
+        return personSearchVMMobile;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPersonSearchVMEmail() {
+        return personSearchVMEmail;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPersonSearchVMAddress() {
+        return personSearchVMAddress;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getPersonSearchVMPostalCode() {
+        return personSearchVMPostalCode;
     }
 
-    public String getCity() {
-        return city;
+    public String getPersonSearchVMCity() {
+        return personSearchVMCity;
     }
 
-    public String getCountry() {
-        return country;
+    public String getPersonSearchVMCountry() {
+        return personSearchVMCountry;
     }
 
-    public boolean isIsTeacher() {
-        return isTeacher;
+    public boolean isPersonSearchVMIsTeacher() {
+        return personSearchVMIsTeacher;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Date getPersonSearchVMDateOfBirth() {
+        return personSearchVMDateOfBirth;
     }
 
-    public boolean isIsJuryMember() {
-        return isJuryMember;
+    public boolean isPersonSearchVMIsJuryMember() {
+        return personSearchVMIsJuryMember;
     }
 
 
-    public void setFirstName(String firsName) {
-        this.firsName = firsName;
+    public void setPersonSearchVMFirstName(String firsName) {
+        this.personSearchVMFirsName = firsName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPersonSearchVMLastName(String personSearchVMLastName) {
+        this.personSearchVMLastName = personSearchVMLastName;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPersonSearchVMMobile(String personSearchVMMobile) {
+        this.personSearchVMMobile = personSearchVMMobile;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPersonSearchVMEmail(String personSearchVMEmail) {
+        this.personSearchVMEmail = personSearchVMEmail;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPersonSearchVMAddress(String personSearchVMAddress) {
+        this.personSearchVMAddress = personSearchVMAddress;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPersonSearchVMPostalCode(String personSearchVMPostalCode) {
+        this.personSearchVMPostalCode = personSearchVMPostalCode;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setPersonSearchVMCity(String personSearchVMCity) {
+        this.personSearchVMCity = personSearchVMCity;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setPersonSearchVMCountry(String personSearchVMCountry) {
+        this.personSearchVMCountry = personSearchVMCountry;
     }
 
-    public void setIsTeacher(boolean isTeacher) {
-        this.isTeacher = isTeacher;
+    public void setPersonSearchVMIsTeacher(boolean personSearchVMIsTeacher) {
+        this.personSearchVMIsTeacher = personSearchVMIsTeacher;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setPersonSearchVMDateOfBirth(Date personSearchVMDateOfBirth) {
+        this.personSearchVMDateOfBirth = personSearchVMDateOfBirth;
     }
 
-    public void setIsJuryMember(boolean isJuryMember) {
-        this.isJuryMember = isJuryMember;
+    public void setPersonSearchVMIsJuryMember(boolean personSearchVMIsJuryMember) {
+        this.personSearchVMIsJuryMember = personSearchVMIsJuryMember;
     }
 }

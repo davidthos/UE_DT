@@ -41,13 +41,28 @@ and open the template in the editor.
                 <form id="personSearch_JS">
                     <label>Rechercher une personne par :</label><br/><br/>
                     
-                    <label>Nom : &nbsp;</label>          <!-- J'affiche ne nom à l'écan -->
+                    <label>Nom :&nbsp;</label>          <!-- J'affiche ne nom à l'écan -->
                     <input id="lastName_search_JS" type="text"/>    <!-- Je crée un champ texte utilisable par l'utilisateur. Une fois le texte encodé, je transmet cette info au JS qui va le traiter (plus exactement, c'est le JS qui demandande, via la methode get, de récupérer l'élement)-->
                     
-                    <label>Prenom : &nbsp;</label>
+                    <label>Prénom :&nbsp;</label>
                     <input id="firstName_search_JS" type="text"/>
                     
-                    <br/><br/>
+                    <label>Téléphone :&nbsp;</label>
+                    <input id="mobile_search_JS" type="text"/>
+                    
+                    <label>E-mail :&nbsp;</label>
+                    <input id="email_search_JS" type="text"/><br/>
+                    
+                    <label>Date de naissance :&nbsp;</label>
+                    <input id="dateOfBirth_search_JS" type="text"/>
+                    
+                    <label>Ville :&nbsp;</label>
+                    <input id="city_search_JS" type="text"/>
+                    
+                    <label>Pays :&nbsp;</label>
+                    <input id="country_search_JS" type="text"/>
+                    
+                    <br/>
                     <!-- SIMPLE TEST : <span onclick="alert('Hello !');">Cliquez-moi !</span> -->
                     <button type="button" onclick="pers.getList()">Rechercher</button>
                 </form>
@@ -80,6 +95,9 @@ and open the template in the editor.
                         <label>Téléphone&nbsp;</label>
                         <input id="mobile_detail_JS" type="text">
                         
+                        <label>Email&nbsp;</label>
+                        <input id="email_detail_JS" type="text">
+                        
                         <label>Adresse&nbsp;</label>
                         <input id="address_detail_JS" type="text"><br/>
                         
@@ -96,8 +114,8 @@ and open the template in the editor.
                         <input id="dateOfBirth_detail_JS" type="text"><br/>
                         
                         <br/>
-                        <button type="button" onclick="pers.doSave()">Sauver</button>&nbsp;
-                        <button type="button" onclick="pers.doNew()">Nouveau</button>&nbsp;
+                        <button type="button" onclick="pers.doSave()">Sauver</button>
+                        <button type="button" onclick="pers.doNew()">Nouveau</button>
                         <button type="button" onclick="pers.doDelete()">Supprimer</button>
                         
                     </form>

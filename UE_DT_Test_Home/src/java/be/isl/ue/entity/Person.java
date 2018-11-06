@@ -17,40 +17,40 @@ import java.util.Objects;
 public class Person implements Entity, Comparable<Person>{
 
     private Integer personId;
-    private String  firstName;
-    private String  lastName;
-    private String  mobile;
-    private String  email;
-    private String  address;
-    private String  postalCode;
-    private String  city;
-    private String  country;
-    private boolean isTeacher;
-    private Date    dateOfBirth;
-    private boolean isJuryMember;
+    private String  personFirstName;
+    private String  personLastName;
+    private String  personMobile;
+    private String  personEmail;
+    private String  personAddress;
+    private String  personPostalCode;
+    private String  personCity;
+    private String  personCountry;
+    private boolean personIsTeacher;
+    private Date    personDateOfBirth;
+    private boolean personIsJuryMember;
 
     public Person() {
     }
 
     public Person(int id, String lastName, String firstName) {
         this.personId = id;
-        this.lastName = lastName;
-        this.firstName = firstName;
+        this.personLastName = lastName;
+        this.personFirstName = firstName;
     }
 
 
     public Person(int id, String lastName, String firstName, String email, String mobile, String address, String postalCode, String city, String country, Date dateOfBirth) {
         this.personId       = id;
-        this.lastName       = lastName;
-        this.firstName      = firstName;
-        this.email          = email;
-        this.mobile         = mobile;
+        this.personLastName       = lastName;
+        this.personFirstName      = firstName;
+        this.personEmail          = email;
+        this.personMobile         = mobile;
         
-        this.address        = address;
-        this.postalCode     = postalCode;
-        this.city           = city;
-        this.country        = country;
-        this.dateOfBirth    = dateOfBirth;
+        this.personAddress        = address;
+        this.personPostalCode     = postalCode;
+        this.personCity           = city;
+        this.personCountry        = country;
+        this.personDateOfBirth    = dateOfBirth;
     }
 
   
@@ -60,96 +60,96 @@ public class Person implements Entity, Comparable<Person>{
         return personId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getPersonFirstName() {
+        return personFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPersonLastName() {
+        return personLastName;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPersonMobile() {
+        return personMobile;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPersonEmail() {
+        return personEmail;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPersonAddress() {
+        return personAddress;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getPersonPostalCode() {
+        return personPostalCode;
     }
 
-    public String getCity() {
-        return city;
+    public String getPersonCity() {
+        return personCity;
     }
 
-    public String getCountry() {
-        return country;
+    public String getPersonCountry() {
+        return personCountry;
     }
 
-    public boolean isIsTeacher() {
-        return isTeacher;
+    public boolean isPersonIsTeacher() {
+        return personIsTeacher;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Date getPersonDateOfBirth() {
+        return personDateOfBirth;
     }
 
-    public boolean isIsJuryMember() {
-        return isJuryMember;
+    public boolean isPersonIsJuryMember() {
+        return personIsJuryMember;
     }
 
     public void setPersonId(Integer personId) {
         this.personId = personId;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPersonFirstName(String personFirstName) {
+        this.personFirstName = personFirstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPersonLastName(String personLastName) {
+        this.personLastName = personLastName;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPersonMobile(String personMobile) {
+        this.personMobile = personMobile;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPersonEmail(String personEmail) {
+        this.personEmail = personEmail;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPersonAddress(String personAddress) {
+        this.personAddress = personAddress;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPersonPostalCode(String personPostalCode) {
+        this.personPostalCode = personPostalCode;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setPersonCity(String personCity) {
+        this.personCity = personCity;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setPersonCountry(String personCountry) {
+        this.personCountry = personCountry;
     }
 
-    public void setIsTeacher(boolean isTeacher) {
-        this.isTeacher = isTeacher;
+    public void setPersonIsTeacher(boolean personIsTeacher) {
+        this.personIsTeacher = personIsTeacher;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setPersonDateOfBirth(Date personDateOfBirth) {
+        this.personDateOfBirth = personDateOfBirth;
     }
 
-    public void setIsJuryMember(boolean isJuryMember) {
-        this.isJuryMember = isJuryMember;
+    public void setPersonIsJuryMember(boolean personIsJuryMember) {
+        this.personIsJuryMember = personIsJuryMember;
     }
 
     
@@ -160,12 +160,12 @@ public class Person implements Entity, Comparable<Person>{
 
     @Override
     public int compareTo(Person o) {
-        return this.lastName.compareTo(o.lastName);
+        return this.personLastName.compareTo(o.personLastName);
     }
 
     @Override
     public String toString() {
-        return "Person{" + "personId=" + personId + ", firsName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile + ", email=" + email + ", address=" + address + ", postalCode=" + postalCode + ", city=" + city + ", contry=" + country + ", isTeacher=" + isTeacher + ", dateOfBirth=" + dateOfBirth + ", isJuryMember=" + isJuryMember + '}';
+        return "Person{" + "personId=" + personId + ", firsName=" + personFirstName + ", lastName=" + personLastName + ", mobile=" + personMobile + ", email=" + personEmail + ", address=" + personAddress + ", postalCode=" + personPostalCode + ", city=" + personCity + ", contry=" + personCountry + ", isTeacher=" + personIsTeacher + ", dateOfBirth=" + personDateOfBirth + ", isJuryMember=" + personIsJuryMember + '}';
     }
     
 
@@ -187,40 +187,40 @@ public class Person implements Entity, Comparable<Person>{
             return false;
         }
         final Person other = (Person) obj;
-        if (this.isTeacher != other.isTeacher) {
+        if (this.personIsTeacher != other.personIsTeacher) {
             return false;
         }
-        if (this.isJuryMember != other.isJuryMember) {
+        if (this.personIsJuryMember != other.personIsJuryMember) {
             return false;
         }
-        if (!Objects.equals(this.firstName, other.firstName)) {
+        if (!Objects.equals(this.personFirstName, other.personFirstName)) {
             return false;
         }
-        if (!Objects.equals(this.lastName, other.lastName)) {
+        if (!Objects.equals(this.personLastName, other.personLastName)) {
             return false;
         }
-        if (!Objects.equals(this.mobile, other.mobile)) {
+        if (!Objects.equals(this.personMobile, other.personMobile)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
+        if (!Objects.equals(this.personEmail, other.personEmail)) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
+        if (!Objects.equals(this.personAddress, other.personAddress)) {
             return false;
         }
-        if (!Objects.equals(this.postalCode, other.postalCode)) {
+        if (!Objects.equals(this.personPostalCode, other.personPostalCode)) {
             return false;
         }
-        if (!Objects.equals(this.city, other.city)) {
+        if (!Objects.equals(this.personCity, other.personCity)) {
             return false;
         }
-        if (!Objects.equals(this.country, other.country)) {
+        if (!Objects.equals(this.personCountry, other.personCountry)) {
             return false;
         }
         if (!Objects.equals(this.personId, other.personId)) {
             return false;
         }
-        if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
+        if (!Objects.equals(this.personDateOfBirth, other.personDateOfBirth)) {
             return false;
         }
         return true;

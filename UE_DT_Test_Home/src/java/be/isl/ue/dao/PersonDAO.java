@@ -79,33 +79,33 @@ public class PersonDAO extends DAO<Person> {
 
 
             where = "WHERE 1=1 ";
-            if (s.getLastName() != null && s.getLastName().length() > 0) {
+            if (s.getPersonSearchVMLastName() != null && s.getPersonSearchVMLastName().length() > 0) {
                 where += "AND last_name like ? ";
             }
-            if (s.getFirstName() != null && s.getFirstName().length() > 0) {
+            if (s.getPersonSearchVMFirstName()!= null && s.getPersonSearchVMFirstName().length() > 0) {
                 where += "AND first_name like ? ";
             }
-            if (s.getEmail() != null && s.getEmail().length() > 0) {
+            if (s.getPersonSearchVMEmail() != null && s.getPersonSearchVMEmail().length() > 0) {
                 where += "AND email like ? ";
             }
-            if (s.getMobile() != null && s.getMobile().length() > 0) {
+            if (s.getPersonSearchVMMobile() != null && s.getPersonSearchVMMobile().length() > 0) {
                 where += "AND mobile like ? ";
             }
             
             
-            if (s.getAddress() != null && s.getAddress().length() > 0) {
+            if (s.getPersonSearchVMAddress() != null && s.getPersonSearchVMAddress().length() > 0) {
                 where += "AND address like ? ";
             }
-            if (s.getPostalCode() != null && s.getPostalCode().length() > 0) {
+            if (s.getPersonSearchVMPostalCode() != null && s.getPersonSearchVMPostalCode().length() > 0) {
                 where += "AND postal_code like ? ";
             }
-            if (s.getCity() != null && s.getCity().length() > 0) {
+            if (s.getPersonSearchVMCity() != null && s.getPersonSearchVMCity().length() > 0) {
                 where += "AND city like ? ";
             }
-            if (s.getCountry() != null && s.getCountry().length() > 0) {
+            if (s.getPersonSearchVMCountry() != null && s.getPersonSearchVMCountry().length() > 0) {
                 where += "AND country like ? ";
             }
-            if (s.getDateOfBirth() != null) {
+            if (s.getPersonSearchVMDateOfBirth() != null) {
                 where += "AND date_of_birth like ? ";
             }
      
@@ -114,45 +114,45 @@ public class PersonDAO extends DAO<Person> {
             
             PreparedStatement stmt = super.getCDB().getConn().prepareStatement(sql);
             
-            if (s.getLastName() != null && s.getLastName().length() > 0) {
+            if (s.getPersonSearchVMLastName() != null && s.getPersonSearchVMLastName().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getLastName() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMLastName() + "%");
             }
-            if (s.getFirstName() != null && s.getFirstName().length() > 0) {
+            if (s.getPersonSearchVMFirstName() != null && s.getPersonSearchVMFirstName().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getFirstName() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMFirstName() + "%");
             }
-            if (s.getEmail() != null && s.getEmail().length() > 0) {
+            if (s.getPersonSearchVMEmail() != null && s.getPersonSearchVMEmail().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getEmail() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMEmail() + "%");
             }
-            if (s.getMobile() != null && s.getMobile().length() > 0) {
+            if (s.getPersonSearchVMMobile() != null && s.getPersonSearchVMMobile().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getMobile() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMMobile() + "%");
             }
             
             
-            if (s.getAddress() != null && s.getAddress().length() > 0) {
+            if (s.getPersonSearchVMAddress() != null && s.getPersonSearchVMAddress().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getAddress() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMAddress() + "%");
             }
-            if (s.getPostalCode()!= null && s.getPostalCode().length() > 0) {
+            if (s.getPersonSearchVMPostalCode()!= null && s.getPersonSearchVMPostalCode().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getPostalCode() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMPostalCode() + "%");
             }
-            if (s.getCity() != null && s.getCity().length() > 0) {
+            if (s.getPersonSearchVMCity() != null && s.getPersonSearchVMCity().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getCity() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMCity() + "%");
             }
-            if (s.getCountry() != null && s.getCountry().length() > 0) {
+            if (s.getPersonSearchVMCountry() != null && s.getPersonSearchVMCountry().length() > 0) {
                 paramNumber++;
-                stmt.setString(paramNumber, "%" + s.getCountry() + "%");
+                stmt.setString(paramNumber, "%" + s.getPersonSearchVMCountry() + "%");
             }
             
             // !!! à voir !!!
-            if (s.getDateOfBirth() != null ) {
+            if (s.getPersonSearchVMDateOfBirth() != null ) {
                 paramNumber++;
-                stmt.setDate(1, (Date) s.getDateOfBirth());
+                stmt.setDate(1, (Date) s.getPersonSearchVMDateOfBirth());
             }
             
             try (ResultSet rs = stmt.executeQuery()) {
@@ -182,10 +182,7 @@ public class PersonDAO extends DAO<Person> {
         }
     }
     
-    
-    
-    
-    
+
     public Person getOne (Integer id){
         for (Person a : super.getList()) {
             if (Objects.equals(a.getId(), id))
@@ -195,12 +192,114 @@ public class PersonDAO extends DAO<Person> {
     }
 
     @Override
-    public void save(Person e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void save(Person p) {
+        try {
+            Statement stmt = super.getCDB().getConn().createStatement();
+            String sql;
+            
+            if(p != null && p.getId() != null){
+                sql = "UPDATE person SET "
+                        + " last_name = ?"
+                        + " WHERE person_id = ?";
+                PreparedStatement pStmt = super.getCDB().getConn().prepareStatement(sql);
+                pStmt.setString(1, p.getPersonLastName());
+                pStmt.executeUpdate();
+                
+                /*sql = "UPDATE person SET "
+                        + " last_name = ?, "
+                        + " first_name = ?, "
+                        + " mobile = ?, "
+                        + " email = ?, "
+                        + " address = ?, "
+                        + " postal_Code = ?, "
+                        + " city = ?, "
+                        + " country = ?, "
+                        + " date_of_birth = ? "
+                        + " WHERE person_id = ?";
+                
+                PreparedStatement pStmt = super.getCDB().getConn().prepareStatement(sql);
+                
+                pStmt.setString(1, p.getPersonLastName());
+                pStmt.setString(2, p.getPersonFirstName());
+                pStmt.setString(3, p.getPersonMobile());
+                pStmt.setString(4, p.getPersonEmail());
+                pStmt.setString(5, p.getPersonAddress());
+                pStmt.setString(6, p.getPersonPostalCode());
+                pStmt.setString(7, p.getPersonCity());
+                pStmt.setString(8, p.getPersonCountry());
+                pStmt.setDate(9, (Date) p.getPersonDateOfBirth());
+                
+                pStmt.executeUpdate();*/
+                
+                /*sql = "UPDATE person SET "
+                        + " last_name  = '"     + p.getPersonLastName()     + "'"
+                        + " first_name = '"     + p.getPersonFirstName()    + "'"
+                        + " mobile = '"         + p.getPersonMobile()       + "'"
+                        + " email = '"          + p.getPersonEmail()        + "'"
+                        + " address = '"        + p.getPersonAddress()      + "'"
+                        + " postal_Code = '"    + p.getPersonPostalCode()   + "'"
+                        + " city = '"           + p.getPersonCity()         + "'"
+                        + " country = '"        + p.getPersonCountry()      + "'"
+                        + " date_of_birth = '"  + p.getPersonDdateOfBirth() + "'"
+                        + " WHERE person_id = " + p.getId();
+                
+                stmt.executeUpdate(sql);*/
+                
+            }else{
+                sql = "INSERT INTO person ("
+                        + "last_name, "
+                        + "first_name, "
+                        + "mobile, "
+                        + "email, "
+                        + "address, "
+                        + "postal_Code, "
+                        + "city, "
+                        + "country, "
+                        + "date_of_birth "
+                        + ") VALUES ("
+                        + "?, "
+                        + "?, "
+                        + "?, "
+                        + "?, "
+                        + "?, "
+                        + "?, "
+                        + "?, "
+                        + "?, "
+                        + "? "
+                        + ")";
+                
+                PreparedStatement pStmt = super.getCDB().getConn().prepareStatement(sql);
+                
+                pStmt.setString(1, p.getPersonLastName());
+                pStmt.setString(2, p.getPersonFirstName());
+                pStmt.setString(3, p.getPersonMobile());
+                pStmt.setString(4, p.getPersonEmail());
+                pStmt.setString(5, p.getPersonAddress());
+                pStmt.setString(6, p.getPersonPostalCode());
+                pStmt.setString(7, p.getPersonCity());
+                pStmt.setString(8, p.getPersonCountry());
+                pStmt.setDate(9, (Date) p.getPersonDateOfBirth());
+                
+                pStmt.executeUpdate();
+                
+                sql = "SELECT currval (person_person_id_seq) AS id";    // Seq ?
+                
+                ResultSet rs = stmt.executeQuery(sql);
+                if (rs.next()) {
+                    p.setPersonId(rs.getInt("id"));
+                }
+                super.getList().add(p);                
+                rs.close();
+                
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //Nouveau car j'essaye d'utiliser l'arrayList dans PersonCtrl
-    public ArrayList<Person> load(Person s) {
+    /*public ArrayList<Person> load(Person s) {
         try {
             Statement stmt = super.getCDB().getConn().createStatement();
             try (ResultSet rs = stmt.executeQuery(
@@ -219,6 +318,6 @@ public class PersonDAO extends DAO<Person> {
         } finally {
             return super.getList();
         }
-    }
+    }*/
     
 }
